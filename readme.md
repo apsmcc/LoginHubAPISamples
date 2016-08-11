@@ -35,17 +35,26 @@ enhancements over time.
 GitHub has an article explaining this process: 
 <https://help.github.com/articles/cloning-a-repository/>
 
+Using The Code
+--------------
+Our code is provided under the _MIT License_ *However*: it really has little
+value unless you have purchased the LoginHub API itself _and_ if you have
+purchased the LoginHub API and you want to use the LoginHubAPISamples under a
+different license - basically just tell us what license your lawyers want you
+to work under!
+
+We used 2 very popular open source libraries, for our sample code. While we
+expect that most people will just use our samples with minor tweaks, it is
+your responsibility (check with your lawyers) to make sure you are happy with
+their license terms. If you don't like them (because of their license or any
+other reason) - there are lots of other libraries you can use that will provide
+the same functionality.
 
 Using The Code
 --------------
 
 The code was written in Visual Studio 2015.  The solution will require a Nuget Restore
 before it will be fully functional.  
-
-We used 2 very popular open source libraries, for our sample code. While we
-expect that most people will just use our samples with minor tweaks, it is
-your responsibility (check with your lawyers) to make sure you are happy with
-it.
 
 This will restore the Nuget packages for:
 
