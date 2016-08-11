@@ -1,0 +1,56 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FE7B79FA-BCC3-4A5B-8495-DC961D1E1DF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{3BBD8E21-D4D1-4202-9C4E-22B93340821D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginHub.Api", "lib\LoginHub.Api\LoginHub.Api.csproj", "{AFC1D397-5898-490D-886D-863EAA225483}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BarebonesCS(1)", "src\BarebonesCS\", "{3FC4160F-8FCF-48F1-B9E8-17E0339DB849}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		ProjectReferences = "{afc1d397-5898-490d-886d-863eaa225483}|LoginHub.Api.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_12888"
+		Debug.AspNetCompiler.PhysicalPath = "src\BarebonesCS\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_12888\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_12888"
+		Release.AspNetCompiler.PhysicalPath = "src\BarebonesCS\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_12888\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "12888"
+		SlnRelativePath = "src\BarebonesCS\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFC1D397-5898-490D-886D-863EAA225483}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC1D397-5898-490D-886D-863EAA225483}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC1D397-5898-490D-886D-863EAA225483}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC1D397-5898-490D-886D-863EAA225483}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FC4160F-8FCF-48F1-B9E8-17E0339DB849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC4160F-8FCF-48F1-B9E8-17E0339DB849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC4160F-8FCF-48F1-B9E8-17E0339DB849}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC4160F-8FCF-48F1-B9E8-17E0339DB849}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AFC1D397-5898-490D-886D-863EAA225483} = {3BBD8E21-D4D1-4202-9C4E-22B93340821D}
+		{3FC4160F-8FCF-48F1-B9E8-17E0339DB849} = {FE7B79FA-BCC3-4A5B-8495-DC961D1E1DF2}
+	EndGlobalSection
+EndGlobal
