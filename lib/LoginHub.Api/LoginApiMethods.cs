@@ -360,13 +360,25 @@ There are lots of error types that could occur here like:
 
 	#region Exceptions
 
+	/// <summary>
+	/// An exception that is raised when the BaseUrl was not specified.
+	/// </summary>
 	public class BaseUrlMissingException : System.Exception
 	{
+		/// <summary>
+		/// Creates a new instance of this Exception
+		/// </summary>
 		public BaseUrlMissingException() : base("A base URL must be specified to be able to use LoginHub APIs.  A base URL should have the format of \"http(s)://<mcserver/mc_web/onsite/loginHub/\"") { }
 	}
 
+	/// <summary>
+	/// An exception that is raised when the Authentication token was not provided to the LoginApiMethods before attempting to make an API call.
+	/// </summary>
 	public class AuthenticationTokenMissingException : System.Exception
 	{
+		/// <summary>
+		/// Creates a new instance of this Exception
+		/// </summary>
 		public AuthenticationTokenMissingException() : base("An authentication token is required to be able to call LoginHub API methods.  Go to the LoginHub secure API page to generate an authentication token.") { }
 	}
 
@@ -382,35 +394,108 @@ There are lots of error types that could occur here like:
 
 	}
 
+	/// <summary>
+	/// An object that represents a JWT login token for a user
+	/// </summary>
 	public class LoginTokenInfo
 	{
+		/// <summary>
+		/// The actual login token if the API call was successful
+		/// </summary>
 		public string Token { get; set; } = "";
+		/// <summary>
+		/// If the API call was successful
+		/// </summary>
 		public bool IsSuccessful { get; set; } = true;
 	}
 
+	/// <summary>
+	/// Flags that cover the access level that a user may have. This is not an exhaustive list and is periodically updated
+	/// as additional applications are added to LoginHub &amp; MC.
+	/// </summary>
 	[Flags]
 	public enum MCUserAccessLevel
 	{
-		None = 0,
-		MRO = 1,
-		KpiDashboard = 2,
-		ServiceRequester = 4,
-		Reporter = 8,
-		TechnicianWorkCenter = 16
+		/// <summary>
+		/// No application access. This typically comes from an unknown application being specified in the MC user record. This can
+		/// often be resolved by updating LoginHub to a newer release.
+		/// </summary>
+		None					= 0,
+		/// <summary>
+		/// Access to the MRO (Maintenance, Repair &amp; Operations) application.
+		/// </summary>
+		MRO						= 1,
+		/// <summary>
+		/// Access to the KPI (Key Performance Indicators) dashboard application.
+		/// </summary>
+		KpiDashboard			= 2,
+		/// <summary>
+		/// Access the to Service Requester application.
+		/// </summary>
+		ServiceRequester		= 4,
+		/// <summary>
+		/// Access to the Reporter application.
+		/// </summary>
+		Reporter				= 8,
+		/// <summary>
+		/// Access to the Technician Work Center application.
+		/// </summary>
+		TechnicianWorkCenter	= 16
 	}
+	/// <summary>
+	/// The basic user details that the LoginHub API will return for a user.
+	/// </summary>
 	public class BasicUserDetails
 	{
+		/// <summary>
+		/// The unique GUID for the user.
+		/// </summary>
 		public Guid UserGuid { get; set; }
+		/// <summary>
+		/// The username, login name or member ID (all the same just different terms) for the user.
+		/// </summary>
 		public string UserName { get; set; }
+		/// <summary>
+		/// An array containing the connection keys for the user.
+		/// </summary>
 		public string[] AllowedConnectionKeys { get; set; }
+		/// <summary>
+		/// The highest combination of application(s) that can be accessed by the user across ALL databases that the
+		/// user has access to.
+		/// </summary>
 		public MCUserAccessLevel HighestApplicationAccess { get; set; }
+		/// <summary>
+		/// The e-mail address that the user has provided
+		/// </summary>
 		public string Email { get; set; }
+		/// <summary>
+		/// The first name of the user
+		/// </summary>
 		public string FirstName { get; set; }
+		/// <summary>
+		/// The middle name of the user
+		/// </summary>
 		public string MiddleName { get; set; }
+		/// <summary>
+		/// The last name of the user
+		/// </summary>
 		public string LastName { get; set; }
+		/// <summary>
+		/// The formatted name of the user. This may be either the LaborName if only a single database is accessible for the
+		/// user OR it will be a formatted string of "{FirstName} {LastName}" if the user has multiple databases accessible.
+		/// </summary>
 		public string Name { get; set; }
+		/// <summary>
+		/// The preferred language for the user
+		/// </summary>
 		public string Language { get; set; }
+		/// <summary>
+		/// If the users account is currently locked out
+		/// </summary>
 		public bool IsLockedOut { get; set; }
+		/// <summary>
+		/// If the users account is currently approved
+		/// </summary>
 		public bool IsApproved { get; set; }
 	}
 
