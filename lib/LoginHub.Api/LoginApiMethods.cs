@@ -29,6 +29,13 @@ namespace LoginHub.Api
 		public static string AuthenticationToken { get; set; } = null;
 
 		/// <summary>
+		/// Sets if the alternative method of communicating to the LoginHub API should be used. This method allows for sending the
+		/// bearer token as a parameter to the method instead of inside a Authorization header. It is useful in the cases where
+		/// a Proxy may be interfering with the communication and removing headers.
+		/// </summary>
+		public static bool PostBearerTokenInsteadOfHeader { get; set; } = false;
+
+		/// <summary>
 		/// Allows being set inside a #if DEBUG block.  Set it to true in order to remove all the remote calling functionality
 		/// and just quickly build a piece of software that uses the APIs.
 		/// </summary>
@@ -74,7 +81,16 @@ namespace LoginHub.Api
 			var request = new RestRequest("loginApis/loginToken", Method.POST);
 			request.AddParameter("username", username);
 			request.AddParameter("password", password);
-			request.AddHeader("Authorization", $"bearer {AuthenticationToken}");
+
+			// Add the bearer token
+			if (!PostBearerTokenInsteadOfHeader)
+			{
+				request.AddHeader("Authorization", $"bearer {AuthenticationToken}");
+			}
+			else
+			{
+				request.AddParameter("token", AuthenticationToken);
+			}
 
 			IRestResponse<LoginToken> response = await client.ExecuteTaskAsync<LoginToken>(request);
 
@@ -132,7 +148,16 @@ namespace LoginHub.Api
 
 			var request = new RestRequest("loginApis/userOnlyLoginToken", Method.POST);
 			request.AddParameter("username", username);
-			request.AddHeader("Authorization", $"bearer {AuthenticationToken}");
+
+			// Add the bearer token
+			if (!PostBearerTokenInsteadOfHeader)
+			{
+				request.AddHeader("Authorization", $"bearer {AuthenticationToken}");
+			}
+			else
+			{
+				request.AddParameter("token", AuthenticationToken);
+			}
 
 			IRestResponse<LoginToken> response = await client.ExecuteTaskAsync<LoginToken>(request);
 
@@ -215,7 +240,16 @@ namespace LoginHub.Api
 
 			var request = new RestRequest("loginApis/basicUserInfo", Method.POST);
 			request.AddParameter("username", username);
-			request.AddHeader("Authorization", $"bearer {AuthenticationToken}");
+
+			// Add the bearer token
+			if (!PostBearerTokenInsteadOfHeader)
+			{
+				request.AddHeader("Authorization", $"bearer {AuthenticationToken}");
+			}
+			else
+			{
+				request.AddParameter("token", AuthenticationToken);
+			}
 
 			IRestResponse<BasicUserDetails> response = await client.ExecuteTaskAsync<BasicUserDetails>(request);
 
