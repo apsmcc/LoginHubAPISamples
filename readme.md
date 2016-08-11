@@ -35,7 +35,7 @@ enhancements over time.
 GitHub has an article explaining this process: 
 <https://help.github.com/articles/cloning-a-repository/>
 
-Using The Code
+Licenses
 --------------
 Our code is provided under the _MIT License_ *However*: it really has little
 value unless you have purchased the LoginHub API itself _and_ if you have
