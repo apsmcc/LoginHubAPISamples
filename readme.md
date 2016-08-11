@@ -34,3 +34,15 @@ fixes and further feature enhancements over time.
 GitHub has an article explaining this process: 
 <https://help.github.com/articles/cloning-a-repository/>
 
+
+Using The Code
+--------------
+
+The code was written in Visual Studio 2015.  The solution will require a Nuget Restore
+before it will be fully functional.  This will restore the Nuget packages for:
+
+* **RestSharp** <http://restsharp.org/> A simple library for making REST API calls.  Any
+            library could have been used, this is the one we chose. _Apache License_
+* **LibLog** <https://github.com/damianh/LibLog> A single file logging abstraction designed
+            so that it will output logs to any major logging framework for .NET. Can also
+            be extended to log to any custom logging solution. _MIT License_
