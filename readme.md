@@ -26,8 +26,9 @@ There are 2 ways to get the source from GitHub.
 1. Clone the repository via Git.
 2. Download a zip copy of the current version of the repository.
 
-We recommend cloning the repository to ensure that you will be able to receive any bug
-fixes and further feature enhancements over time.
+If you are familiar with Git, we recommend cloning the repository to ensure that
+you will be able to easily receive any bug fixes and further feature
+enhancements over time.
 
 ### Clone the repository
 
@@ -39,7 +40,14 @@ Using The Code
 --------------
 
 The code was written in Visual Studio 2015.  The solution will require a Nuget Restore
-before it will be fully functional.  This will restore the Nuget packages for:
+before it will be fully functional.  
+
+We used 2 very popular open source libraries, for our sample code. While we
+expect that most people will just use our samples with minor tweaks, it is
+your responsibility (check with your lawyers) to make sure you are happy with
+it.
+
+This will restore the Nuget packages for:
 
 * **RestSharp** <http://restsharp.org/> A simple library for making REST API calls.  Any
             library could have been used, this is the one we chose. _Apache License_
