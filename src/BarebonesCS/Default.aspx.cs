@@ -18,7 +18,7 @@ public partial class _Default : System.Web.UI.Page
         if (HttpContext.Current.IsDebuggingEnabled)
         {
             LoginApiMethods.IsSimulationMode = true;
-            LoginApiMethods.SimulationModeType = SimulationModeType.SimulateSuccess;
+            LoginApiMethods.SimulationModeType = SimulationModeType.RandomlySimulateSomething;
         }
 
         SubmitUsername.Click += SubmitUsername_Click;
@@ -43,7 +43,7 @@ public partial class _Default : System.Web.UI.Page
             var loginToken = await LoginApiMethods.CreateLoginToken(Username.Text);
 
             // Send into the LoginHub
-            Response.Redirect(LoginApiMethods.CreateLoginUrlForToken(loginToken));
+            Response.Redirect(LoginApiMethods.CreateLoginUrlForToken(loginToken), false);
             return;
         }
 
@@ -64,7 +64,7 @@ public partial class _Default : System.Web.UI.Page
         }
 
         // Send into the LoginHub
-        Response.Redirect(LoginApiMethods.CreateLoginUrlForToken(loginToken));
+        Response.Redirect(LoginApiMethods.CreateLoginUrlForToken(loginToken), false);
         return;
     }
 
