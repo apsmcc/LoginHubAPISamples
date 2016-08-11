@@ -1,4 +1,4 @@
-﻿using Anotar.LibLog;
+﻿using LoginHub.Api.Logging;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace LoginHub.Api
 {
+    /// <summary>
+    /// A collection of static methods for use in calling the LoginHub API.
+    /// </summary>
     public static class LoginApiMethods
     {
+        /// <summary>
+        /// For Logging.
+        /// </summary>
+        private static readonly LoginHub.Api.Logging.ILog LogTo = LoginHub.Api.Logging.LogProvider.GetLogger("LoginApiMethods");
 
         public static string BaseUrl { get; set; } = null;
         public static string AuthenticationToken { get; set; } = null;
@@ -32,7 +39,7 @@ namespace LoginHub.Api
             if (string.IsNullOrEmpty(username)) throw new ArgumentException("A value must be used for username", nameof(username));
             if (string.IsNullOrEmpty(password)) throw new ArgumentException("A value must be used for password", nameof(password));
 
-            LogTo.Info("Creating a login token against url \"{url}\" with user \"{user}\" and password.", BaseUrl, username);
+            LogTo.Info(() => $"Creating a login token against url \"{BaseUrl}\" with user \"{username}\" and password.");
 
             // Special test/development mode feature
             if (IsSimulationMode)
@@ -62,7 +69,7 @@ namespace LoginHub.Api
 
             if (response.ResponseStatus != ResponseStatus.Completed)
             {
-                LogTo.Error("Error occured during login token retrieval.", response);
+                LogTo.Error(() => $"Error occurred during login token retrieval. {response}");
                 if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
                     return new LoginTokenInfo { IsSuccessful = false };
@@ -73,7 +80,7 @@ namespace LoginHub.Api
                 }
             }
 
-            LogTo.Debug("One time use token created {token} for {user}", response.Data.Token, username);
+            LogTo.Debug(() => $"One time use token created {response.Data.Token} for {username}");
             return new LoginTokenInfo { Token = response.Data.Token };
         }
 
@@ -83,7 +90,7 @@ namespace LoginHub.Api
             if (string.IsNullOrEmpty(AuthenticationToken)) throw new AuthenticationTokenMissingException();
             if (string.IsNullOrEmpty(username)) throw new ArgumentException("A value must be used for username", nameof(username));
 
-            LogTo.Info("Creating a login token against url \"{url}\" with user \"{user}\".", BaseUrl, username);
+            LogTo.Info(() => $"Creating a login token against url \"{BaseUrl}\" with user \"{username}\".");
 
             // Special test/development mode feature
             if (IsSimulationMode)
@@ -104,7 +111,7 @@ namespace LoginHub.Api
 
             if (response.ResponseStatus != ResponseStatus.Completed)
             {
-                LogTo.Error("Error occured during login token retrieval.", response);
+                LogTo.Error(() => $"Error occurred during login token retrieval. {response}");
                 if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
                     return new LoginTokenInfo { IsSuccessful = false };
@@ -115,7 +122,7 @@ namespace LoginHub.Api
                 }
             }
 
-            LogTo.Debug("One time use token created {token} for {user}", response.Data.Token, username);
+            LogTo.Debug(() => $"One time use token created {response.Data.Token} for {username}");
             return new LoginTokenInfo { Token = response.Data.Token };
         }
 
@@ -132,7 +139,7 @@ namespace LoginHub.Api
             if (string.IsNullOrEmpty(AuthenticationToken)) throw new AuthenticationTokenMissingException();
             if (string.IsNullOrEmpty(username)) throw new ArgumentException("A value must be used for username", nameof(username));
 
-            LogTo.Info("Getting basic user info with url \"{url}\" and user \"{user}\".", BaseUrl, username);
+            LogTo.Info(() => $"Getting basic user info with url \"{BaseUrl}\" and user \"{username}\".");
 
             // Special test/development mode feature
             if (IsSimulationMode)
@@ -185,7 +192,7 @@ namespace LoginHub.Api
 
             if (response.ResponseStatus != ResponseStatus.Completed)
             {
-                LogTo.Error("Error occurred during basic user info retrieval.", response);
+                LogTo.Error(() => $"Error occurred during basic user info retrieval. {response}");
                 if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
                     return null;
@@ -196,7 +203,7 @@ namespace LoginHub.Api
                 }
             }
 
-            LogTo.Debug("Basic user information {info} retrieved for user {user}", response.Data, username);
+            LogTo.Debug(() => $"Basic user information {response.Data} retrieved for user {username}");
             return response.Data;
         }
 
@@ -212,7 +219,7 @@ namespace LoginHub.Api
             if (string.IsNullOrEmpty(AuthenticationToken)) throw new AuthenticationTokenMissingException();
             if (token == null || !token.IsSuccessful) throw new ArgumentException("A successful created token must be used to create a URL. There was an error generating the token.");
 
-            LogTo.Info("Generating a login url for token \"{token}\".", token.Token);
+            LogTo.Info(() => $"Generating a login url for token \"{token.Token}\".");
 
             // Special test/development mode feature
             if (IsSimulationMode)
