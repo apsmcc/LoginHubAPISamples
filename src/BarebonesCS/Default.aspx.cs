@@ -37,6 +37,14 @@ public partial class _Default : System.Web.UI.Page
             return;
         }
 
+		// Is the user enabled?
+		if (!userInfo.IsApproved || userInfo.IsLockedOut)
+		{
+			//TODO: show an error
+			return;
+		}
+
+		// Does the user ONLY have access to the service requester
         if ((userInfo.HighestApplicationAccess & MCUserAccessLevel.ServiceRequester) == MCUserAccessLevel.ServiceRequester)
         {
             // Proceed through
