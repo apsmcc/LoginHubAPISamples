@@ -18,6 +18,8 @@ namespace LoginHub.Api
 		/// </summary>
 		private static readonly LoginHub.Api.Logging.ILog LogTo = LoginHub.Api.Logging.LogProvider.GetLogger("LoginApiMethods");
 
+		public const string LoginAPIBasePath = "loginAPIs/v7/";
+
 		/// <summary>
 		/// The URL for the LoginHub, this will usually be in the form of http(s)://{MC server name}/mc_web/onsite/loginHub/
 		/// </summary>
@@ -78,7 +80,7 @@ namespace LoginHub.Api
 
 			var client = new RestClient(BaseUrl);
 
-			var request = new RestRequest("loginApis/loginToken", Method.POST);
+			var request = new RestRequest(LoginAPIBasePath + "loginToken", Method.POST);
 			request.AddParameter("username", username);
 			request.AddParameter("password", password);
 
@@ -146,7 +148,7 @@ namespace LoginHub.Api
 
 			var client = new RestClient(BaseUrl);
 
-			var request = new RestRequest("loginApis/userOnlyLoginToken", Method.POST);
+			var request = new RestRequest(LoginAPIBasePath + "userOnlyLoginToken", Method.POST);
 			request.AddParameter("username", username);
 
 			// Add the bearer token
@@ -238,7 +240,7 @@ namespace LoginHub.Api
 
 			var client = new RestClient(BaseUrl);
 
-			var request = new RestRequest("loginApis/basicUserInfo", Method.POST);
+			var request = new RestRequest(LoginAPIBasePath + "basicUserInfo", Method.POST);
 			request.AddParameter("username", username);
 
 			// Add the bearer token
@@ -291,10 +293,10 @@ namespace LoginHub.Api
 			// Special test/development mode feature
 			if (IsSimulationMode)
 			{
-				return ExecuteSimulator(() => $"{BaseUrl}/loginApis/loginWithToken/?token={token.Token}", () => $"{BaseUrl}/loginApis/loginWithToken/?token={token.Token}");
+				return ExecuteSimulator(() => $"{BaseUrl}/{LoginAPIBasePath}loginWithToken/?token={token.Token}", () => $"{BaseUrl}/{LoginAPIBasePath}loginWithToken/?token={token.Token}");
 			}
 
-			return $"{BaseUrl}/loginApis/loginWithToken/?token={token.Token}";
+			return $"{BaseUrl}/{LoginAPIBasePath}loginWithToken/?token={token.Token}";
 		}
 
 		/// <summary>
