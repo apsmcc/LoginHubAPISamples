@@ -26,7 +26,7 @@
 
             <h3>Please enter your password</h3>
 
-            <asp:TextBox ID="Password" runat="server"></asp:TextBox>
+            <asp:TextBox ID="Password" TextMode="Password" runat="server"></asp:TextBox>
 
             <asp:Button ID="SubmitPassword" runat="server" Text="Submit" />
         </section>
